@@ -7,14 +7,14 @@ class CalculatorView extends Component {
   
     this.state = {
        inputValue: ``,
-       a: ``,
-       b: ``
+       operator_1: ``,
+       operand: ``
     }
   }
   
   changeInput = (event) => {
     this.setState((prevState) => ({
-      inputValue: `${prevState.inputValue} ${event.target.value}`
+      inputValue: `${prevState.inputValue}${event.target.value}`
     }),() => {console.log(this.state.inputValue)})
     event.preventDefault();
   }
@@ -25,33 +25,67 @@ class CalculatorView extends Component {
     })
     event.preventDefault();
   }
-  addNum = (event, prevState) => {
-    if(event.target.value === `+`){
+  performOperation = (event) => {
       this.setState((prevState) => ({ 
-        a: parseInt(prevState.inputValue),
-        b:  event.target.value,
+        operator_1: parseInt(prevState.inputValue),
+        operand:  event.target.value,
         inputValue: ``
       }))
-    }
-    
+      event.preventDefault();
   }
 
   equal = (event) => {
-    var c = parseInt(this.state.inputValue)
-      if(this.state.b === `+`){
+    var operator_2 = parseInt(this.state.inputValue)
+      if(this.state.operand === `+`){
         this.setState((prevState) => ({
-          inputValue: this.state.a + c,
-          a: ``,
-          b: ``
+          
+          inputValue: this.state.operator_1 + operator_2,
+          operator_1: ``,
+          operand: ``
       }),() => {console.log(this.state.inputValue)})
       }
-      
+      else if(this.state.operand === `-`){
+        this.setState((prevState) => ({
+          inputValue: this.state.operator_1 - operator_2,
+          operator_1: ``,
+          operand: ``
+      }),() => {console.log(this.state.inputValue)})
+      }
+      else if(this.state.operand === `*`){
+        this.setState((prevState) => ({
+          inputValue: this.state.operator_1 * operator_2,
+          operator_1: ``,
+          operand: ``
+      }),() => {console.log(this.state.inputValue)})
+      }
+      else if(this.state.operand === `/`){
+        this.setState((prevState) => ({
+          inputValue: this.state.operator_1 / operator_2,
+          operator_1: ``,
+          operand: ``
+      }),() => {console.log(this.state.inputValue)})
+      }
+      else if(this.state.operand === `%`){
+        this.setState((prevState) => ({
+          inputValue: this.state.operator_1 % operator_2,
+          operator_1: ``,
+          operand: ``
+      }),() => {console.log(this.state.inputValue)})
+      }
+      else if(this.state.operand === `Pow`){
+        this.setState((prevState) => ({
+          inputValue: Math.pow(this.state.operator_1, operator_2),
+          operator_1: ``,
+          operand: ``
+      }),() => {console.log(this.state.inputValue)})
+      }
+      event.preventDefault()
   }
     render() {
     return (<>
     <div className='main_page'>  
         <div className='calculator'>
-            <input type='text' className='calculator_input' placeholder='Enter the Operations' defaultValue={this.state.inputValue}/>
+            <input type='text' className='calculator_input' placeholder='Enter the Operators' defaultValue={this.state.inputValue}/>
             <div className='calculator_buttons'>
               <div className='number_buttons'>
                 <div className='button7_9'>
@@ -80,16 +114,16 @@ class CalculatorView extends Component {
                     <button onClick={this.changeToClear}>Clear</button>
                 </div>
                 <div className='button_plus_minus'>
-                    <button value='+' onClick={this.addNum}>+</button>
-                    <button value='-' onClick={this.changeInput}>- </button>
+                    <button value='+' onClick={this.performOperation}>+</button>
+                    <button value='-' onClick={this.performOperation}>- </button>
                 </div>
                 <div className='button_mul_div'>
-                    <button value='*' onClick={this.divNum}>*</button>
-                    <button value='/' onClick={this.changeInput}>/</button>
+                    <button value='*' onClick={this.performOperation}>*</button>
+                    <button value='/' onClick={this.performOperation}>/</button>
                 </div>
                 <div className='button_mod_pow'>
-                    <button value='%' onClick={this.changeInput}>%</button>
-                    <button value='Pow' onClick={this.changeInput}>Pow</button>
+                    <button value='%' onClick={this.performOperation}>%</button>
+                    <button value='Pow' onClick={this.performOperation}>Pow</button>
                 </div>
               </div>
             </div>
