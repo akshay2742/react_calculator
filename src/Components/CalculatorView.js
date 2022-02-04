@@ -12,6 +12,13 @@ class CalculatorView extends Component {
     }
   }
   
+  changeHandler = (event) => {
+    this.setState((prevState) => ({
+      inputValue: `${event.target.value}`
+    }),() => {console.log(this.state.inputValue)})
+    event.preventDefault()
+  }
+
   changeInput = (event) => {
     this.setState((prevState) => ({
       inputValue: `${prevState.inputValue}${event.target.value}`
@@ -35,7 +42,7 @@ class CalculatorView extends Component {
   }
 
   equal = (event) => {
-    var operator_2 = parseInt(this.state.inputValue)
+    let operator_2 = parseInt(this.state.inputValue)
       if(this.state.operand === `+`){
         this.setState((prevState) => ({
           
@@ -85,7 +92,7 @@ class CalculatorView extends Component {
     return (<>
     <div className='main_page'>  
         <div className='calculator'>
-            <input type='text' className='calculator_input' placeholder='Enter the Operators' defaultValue={this.state.inputValue}/>
+            <input type='text' className='calculator_input' placeholder='Enter the Operators' defaultValue={this.state.inputValue} onChange={this.changeHandler}/>
             <div className='calculator_buttons'>
               <div className='number_buttons'>
                 <div className='button7_9'>
