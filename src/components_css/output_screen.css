@@ -6,6 +6,8 @@
     border-left: #EEE5E9 solid 2px;
     background-image: linear-gradient(to right, #434343 0%, black 100%);
     box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.2);
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .outputList{
