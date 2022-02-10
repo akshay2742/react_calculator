@@ -1,0 +1,24 @@
+.output{
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-left: #EEE5E9 solid 2px;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.outputList{
+    list-style: none;   
+    margin: 0;
+    padding: 0;
+}
+.outputList li{
+    text-align: center;
+    padding: 5px;
+    border-bottom: #EEE5E9 solid 1px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+    animation: fadeIn 1s;
+}
